@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "./searchInput.css";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchAllData } from "../../redux/slice";
 
 const SearchInput = () => {
-  const {} = useSelector((state) => state.slice);
   const dispatch = useDispatch();
 
   const [error, setError] = useState(null);
@@ -39,7 +38,7 @@ const SearchInput = () => {
           />
           <input type="submit" className="search-button" value="Search" />
         </form>
-      {error ? <p className="error-text">{error}</p> : null}
+        {error ? <p className="error-text">{error}</p> : null}
       </div>
     </>
   );

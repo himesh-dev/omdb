@@ -55,16 +55,13 @@ export const fetchAllData = (searchText) => async (dispatch, getState) => {
   try {
     dispatch(setLoading(true));
     const res = await axiosInstance.get("", { params });
-    console.log();
     if (res.data?.Response === "True") {
       dispatch(setAllData(res.data.Search));
     } else {
       dispatch(setError(res.data.Error));
     }
-    console.log("res", res.data);
     dispatch(setLoading(false));
   } catch (err) {
-    console.log("error", err);
     batch(() => {
       dispatch(setError(err));
       dispatch(setLoading(false));

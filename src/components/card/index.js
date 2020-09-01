@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import Poster from "../poster";
 import { setFavData } from "../../redux/slice";
-import { getLocalStorage, setLocalStorage } from "../../api/apiModule";
+import { setLocalStorage } from "../../api/apiModule";
 
 const Card = (props) => {
   const { Poster: poster_src, Title, Type, Year, imdbID } = props.data;
@@ -15,18 +15,11 @@ const Card = (props) => {
 
   const addToFav = (e) => {
     e.stopPropagation();
-    // const fav_local = getLocalStorage("fav");
     let updatedFavData = [...favouriteData];
     if (label === "Add") {
       updatedFavData.push(props.data);
       dispatch(setFavData(updatedFavData));
-
-      // updateData = localWatchLater
-      //   ? [...JSON.parse(localWatchLater), { ...props.data }]
-      //   : [{ ...props.data }];
     } else {
-      // updateData = [...JSON.parse(localWatchLater)];
-      // updateData.splice(index, 1);
       updatedFavData.splice(index, 1);
       dispatch(setFavData(updatedFavData));
     }
