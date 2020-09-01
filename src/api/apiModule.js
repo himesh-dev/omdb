@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://www.omdbapi.com/?apikey=4ef68d";
+const BASE_URL = "https://www.omdbapi.com/?apikey=4ef68d";
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
