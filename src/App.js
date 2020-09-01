@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getLocalStorage } from "./api/apiModule";
+import "./App.css";
+import Head from "./components/SearchBar";
+import Body from "./components/body";
+import { setFavData } from "./redux/slice";
+import NavBar from "./components/navBar";
 
 function App() {
+  const dispatch = useDispatch();
+  const { page } = useSelector((state) => state.slice);
+  useEffect(() => {
+    const local_fav = getLocalStorage("fav");
+    dispatch(setFavData(JSON.parse(local_fav)));
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar />
+      <div className="main">
+        {page === "home" ? <Head /> : null}
+        <Body />
+      </div>
     </div>
   );
 }

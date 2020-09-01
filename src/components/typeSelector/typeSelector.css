@@ -1,0 +1,8 @@
+.type-selector {
+  height: 40px;
+  width: 20%;
+  border: none;
+  outline: none;
+  /* padding-left: 10px; */
+  background-color:  rgb(230, 213, 69);
+}
