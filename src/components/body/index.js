@@ -4,7 +4,7 @@ import Card from "../card";
 import "./body.css";
 
 const Body = () => {
-  const { allData, error, favouriteData, page } = useSelector(
+  const { allData, error, favouriteData, page, loading } = useSelector(
     (state) => state.slice
   );
   let displayData = page === "home" ? [...allData] : [...favouriteData];
@@ -14,10 +14,12 @@ const Body = () => {
       : "No Media has been added to favourites";
   return (
     <div className="body">
-      {displayData.length ? (
+      {loading ? (
+        <h1>LOADING...</h1>
+      ) : error && page === "home" ? (
+        <h2>ERROR: {error}</h2>
+      ) : displayData.length ? (
         displayData.map((data) => <Card key={data.imdbID} data={data} />)
-      ) : error ? (
-        <h2>{error}</h2>
       ) : (
         <h1>{text}</h1>
       )}

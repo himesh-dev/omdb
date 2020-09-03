@@ -12,7 +12,9 @@ function App() {
   const { page } = useSelector((state) => state.slice);
   useEffect(() => {
     const local_fav = getLocalStorage("fav");
-    dispatch(setFavData(JSON.parse(local_fav)));
+    if (local_fav) {
+      dispatch(setFavData(JSON.parse(local_fav)));
+    }
   }, []);
   return (
     <div className="App">

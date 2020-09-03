@@ -41,7 +41,7 @@ export const {
   setAllData,
   setFavData,
   setType,
-  setPage
+  setPage,
 } = appSlice.actions;
 
 export default appSlice.reducer;
@@ -53,7 +53,10 @@ export const fetchAllData = (searchText) => async (dispatch, getState) => {
     type: type !== "all" ? type : null,
   };
   try {
-    dispatch(setLoading(true));
+    batch(() => {
+      dispatch(setLoading(true));
+      dispatch(setError(null));
+    });
     const res = await axiosInstance.get("", { params });
     if (res.data?.Response === "True") {
       dispatch(setAllData(res.data.Search));
